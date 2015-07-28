@@ -1,14 +1,13 @@
 # == Schema Information
 #
-# Table name: telemetric_recordings
+# Table name: ship_models
 #
 #  id         :integer          not null, primary key
-#  flight_id  :integer
-#  data       :json
+#  name       :string
+#  category   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class TelemetricRecording < ActiveRecord::Base
-  belongs_to :flight
+class ShipModel < ActiveRecord::Base
 end
