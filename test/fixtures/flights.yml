@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ship_id: 1
+  status: MyString
+  telemetric_recordings: 
+
+two:
+  ship_id: 1
+  status: MyString
+  telemetric_recordings: 
