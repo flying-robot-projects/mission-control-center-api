@@ -1,7 +1,3 @@
 Rails.application.routes.draw do
-
-
-
-  get 'flights/show'
-
+  resources :flights, only: :show
 end
