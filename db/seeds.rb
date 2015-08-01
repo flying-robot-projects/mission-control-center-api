@@ -6,5 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-saccoche_model = ShipModel.create(name: "Saccoche", category: "balloon")
-saccoche_ship = Ship.create(name: "Saccoche-01", ship_model: saccoche_model, status: "in construction")
+saccoche_model = ShipModel.create(name: "Sacoche", category: "balloon")
+saccoche_ship = Ship.create(name: "Sacoche-01", ship_model: saccoche_model, status: "in construction")
