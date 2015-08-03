@@ -1,0 +1,1 @@
+json.array! @flights, :id, :ship_id, :status, :telemetric_recordings, :created_at, :updated_at
