@@ -17,4 +17,6 @@ RSpec.describe "FlightsController", :type => :request do
     it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
   end
 
+  pending "Update action"
+
 end
