@@ -12,9 +12,20 @@ RSpec.describe "FlightsController", :type => :request do
   end
 
   describe "Show action" do
-    before { get flight_path(@flight.id) }
-    it { expect(response.body).to include @flight.to_json }
-    it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
+
+    context "when flight ID doesn't exist" do
+      before { get flight_path(999) }
+      it { expect(response.status).to eq 404 }
+      it { expect(response.body).to match /not found/ }
+    end
+
+    context "when flight ID exists" do
+      before { get flight_path(@flight.id) }
+      it { expect(response.body).to include @flight.to_json }
+      it { expect(response.body).to include @flight.ship.to_json }
+      it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
+    end
+
   end
 
   pending "Update action"
