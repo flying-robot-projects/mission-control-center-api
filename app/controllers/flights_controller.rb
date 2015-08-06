@@ -4,6 +4,9 @@ class FlightsController < ApplicationController
     @flights = Flight.all
   end
 
+  def create
+  end
+
   def show
     if params[:id]
       @flight = Flight.find params[:id]

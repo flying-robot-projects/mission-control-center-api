@@ -11,6 +11,8 @@ RSpec.describe "FlightsController", :type => :request do
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
   end
 
+  pending "Create action"
+
   describe "Show action" do
 
     context "when flight ID doesn't exist" do
