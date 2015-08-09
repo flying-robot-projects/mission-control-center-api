@@ -6,8 +6,10 @@ RSpec.describe "FlightsController", :type => :request do
   after { Flight.destroy_all }
 
   describe "Index action" do
+    let!(:flight) { create(:flight) }
     before { get flights_path }
     it { expect(response.body).to include @flight.to_json }
+    it { expect(JSON.parse(response.body).count).to eq 2 }
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
   end
 

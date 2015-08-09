@@ -8,11 +8,9 @@ class FlightsController < ApplicationController
   end
 
   def show
-    if params[:id]
-      @flight = Flight.find params[:id]
-    else
-      render :json, "ID params is required"
-    end
+    @flight = Flight.find params[:id]
+  rescue ActiveRecord::RecordNotFound => e
+    render json: "Unknown flight with ID #{params[:id].to_s} (not found)", status: 404
   end
 
   def update
