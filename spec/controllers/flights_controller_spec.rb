@@ -52,13 +52,13 @@ RSpec.describe "FlightsController", :type => :request do
     context "with allowed params" do
       before { patch flight_path(id: @flight.id, flight: { status: "in flight" }) }
       it { expect(response.status).to eq 200 }
-      it { expect(JSON.parse(response.body)["status"]).to eq "in flight" }
+      it { expect(JSON.parse(response.body)["flight"]["status"]).to eq "in flight" }
     end
 
     context "with unallowed params" do
       before { patch flight_path(id: @flight.id, flight: { bad_key: "never assigned value" }) }
       it { expect(response.status).to eq 200 }
-      it { expect(response.body).to eq @flight.to_json }
+      it { expect(response.body).to include @flight.to_json }
     end
 
   end
