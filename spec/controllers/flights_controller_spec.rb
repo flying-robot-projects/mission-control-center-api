@@ -13,12 +13,25 @@ RSpec.describe "FlightsController", :type => :request do
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
   end
 
-  pending "Create action"
+  describe "Create action" do
+
+    context "with existing ship ID" do
+      before { post flights_path(ship_id: @flight.ship.id) }
+      it { expect(response.status).to eq 201 }
+    end
+
+    context "with unknown ship ID" do
+      before { post flights_path(ship_id: -1) }
+      it { expect(response.status).to eq 404 }
+      it { expect(response.body).to match /not found/ }
+    end
+
+  end
 
   describe "Show action" do
 
     context "when flight ID doesn't exist" do
-      before { get flight_path(999) }
+      before { get flight_path(-1) }
       it { expect(response.status).to eq 404 }
       it { expect(response.body).to match /not found/ }
     end
