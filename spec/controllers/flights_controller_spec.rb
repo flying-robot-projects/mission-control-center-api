@@ -6,7 +6,6 @@ RSpec.describe "FlightsController", :type => :request do
   after { Flight.destroy_all }
 
   describe "Index action" do
-
     let!(:flight) { create(:flight) }
     before { get flights_path }
     it { expect(response.body).to include @flight.to_json }
@@ -16,15 +15,21 @@ RSpec.describe "FlightsController", :type => :request do
 
   describe "Create action" do
 
-    context "with existing ship ID" do
-      before { post flights_path(flight: { ship_id: @flight.ship.id }) }
+    context "with valid params" do
+      let(:valid_params) { attributes_for(:flight) }
+      before { post flights_path(valid_params) }
       it { expect(response.status).to eq 201 }
     end
 
-    context "with unknown ship ID" do
-      before { post flights_path(flight: { ship_id: -1 }) }
-      it { expect(response.status).to eq 404 }
-      it { expect(response.body).to match /not found/ }
+    context "with invalid params" do
+
+      context "when missing or unknown params" do
+      end
+
+      context "but unknown ship ID" do
+        before { post flights_path(valid_params, ship_id: -1) }
+        it { expect(response.status).to eq 404 }
+      end
     end
   end
 
@@ -33,7 +38,6 @@ RSpec.describe "FlightsController", :type => :request do
     context "when flight ID doesn't exist" do
       before { get flight_path(-1) }
       it { expect(response.status).to eq 404 }
-      it { expect(response.body).to match /not found/ }
     end
 
     context "when flight ID exists" do
