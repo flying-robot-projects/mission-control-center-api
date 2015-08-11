@@ -27,6 +27,12 @@ class ShipsController < ApplicationController
   end
 
   def destroy
+    @ship = Ship.find params[:id]
+    @ship.destroy!
+    Flight.where(ship_id: @ship.id).each { |flight| flight.destroy! }
+    render "ships/destroy", status: :ok
+  rescue ActiveRecord::RecordNotFound => e
+    render json: "Unknown ship with ID #{params[:id].to_s} (not found)", status: :not_found
   end
 
   private

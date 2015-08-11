@@ -12,7 +12,6 @@ RSpec.describe "FlightsController", :type => :request do
     it { expect(response.body).to include @flight.to_json }
     it { expect(JSON.parse(response.body).count).to eq 2 }
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
-
   end
 
   describe "Create action" do
@@ -27,7 +26,6 @@ RSpec.describe "FlightsController", :type => :request do
       it { expect(response.status).to eq 404 }
       it { expect(response.body).to match /not found/ }
     end
-
   end
 
   describe "Show action" do
@@ -44,7 +42,6 @@ RSpec.describe "FlightsController", :type => :request do
       it { expect(response.body).to include @flight.ship.to_json }
       it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
     end
-
   end
 
   describe "Update action" do
@@ -60,7 +57,6 @@ RSpec.describe "FlightsController", :type => :request do
       it { expect(response.status).to eq 200 }
       it { expect(response.body).to include @flight.to_json }
     end
-
   end
 
 end

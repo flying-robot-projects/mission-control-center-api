@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :flight do
-    association :ship
+    ship
     status "pending"
     telemetric_recordings nil
   end
