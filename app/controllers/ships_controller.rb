@@ -1,6 +1,7 @@
 class ShipsController < ApplicationController
 
   def index
+    @ships = Ship.all
   end
 
   def create
