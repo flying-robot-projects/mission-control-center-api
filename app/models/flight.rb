@@ -14,4 +14,5 @@ class Flight < ActiveRecord::Base
   belongs_to :ship
 
   validates :ship_id, :status, presence: true
+  validates :status, inclusion: { in: %w(pending in_progress ended) }
 end

@@ -11,4 +11,5 @@
 
 class ShipModel < ActiveRecord::Base
   validates :name, :category, presence: true
+  validates :category, inclusion: { in: %w(balloon zeppelin plane drone rocket) }
 end

@@ -14,4 +14,5 @@ class Ship < ActiveRecord::Base
   belongs_to :ship_model
 
   validates :name, :ship_model_id, :status, presence: true
+  validates :status, inclusion: { in: %w(waiting on_launch_pad flying destroyed landed) }
 end
