@@ -15,7 +15,20 @@ RSpec.describe "ShipsController", :type => :request do
 
   end
 
-  pending "Create action"
+  describe "Create action" do
+
+    context "with existing ship_model ID" do
+      before { post ships_path(ship: { ship_model_id: @ship.ship_model.id }) }
+      it { expect(response.status).to eq 201 }
+    end
+
+    context "with unknown ship ID" do
+      before { post ships_path(ship: { ship_model_id: -1 }) }
+      it { expect(response.status).to eq 404 }
+      it { expect(response.body).to match /not found/ }
+    end
+
+  end
 
   pending "Show action"
 

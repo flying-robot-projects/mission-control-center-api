@@ -9,7 +9,7 @@ class FlightsController < ApplicationController
     @flight = Flight.create(flight_params)
     render "flights/show", status: :created
   rescue ActiveRecord::RecordNotFound => e
-    render json: "Unknown ship with ID #{params[:id].to_s} (not found)", status: :not_found
+    render json: "Unknown ship with ID #{params[:flight][:ship_id].to_s} (not found)", status: :not_found
   end
 
   def show

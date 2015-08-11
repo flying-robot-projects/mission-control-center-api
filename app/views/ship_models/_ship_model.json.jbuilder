@@ -1,0 +1,1 @@
+json.(ship_model, :id, :name, :category, :created_at, :updated_at)
