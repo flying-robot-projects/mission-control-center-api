@@ -10,4 +10,5 @@
 #
 
 class ShipModel < ActiveRecord::Base
+  validates :name, :category, presence: true
 end

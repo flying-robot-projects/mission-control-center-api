@@ -11,4 +11,6 @@
 
 class TelemetricRecording < ActiveRecord::Base
   belongs_to :flight
+
+  validates :flight_id, :data, presence: true
 end

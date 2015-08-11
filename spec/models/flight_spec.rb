@@ -10,8 +10,12 @@
 #  updated_at            :datetime         not null
 #
 
-class Flight < ActiveRecord::Base
-  belongs_to :ship
+require "rails_helper"
 
-  validates :ship_id, :status, presence: true
+RSpec.describe Flight, :type => :model do
+  subject { build(:flight) }
+
+  it { is_expected.to be_valid }
+  it { is_expected.to validate_presence_of :ship_id }
+  it { is_expected.to validate_presence_of :status }
 end

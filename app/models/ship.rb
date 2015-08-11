@@ -12,4 +12,6 @@
 
 class Ship < ActiveRecord::Base
   belongs_to :ship_model
+
+  validates :name, :ship_model_id, :status, presence: true
 end
