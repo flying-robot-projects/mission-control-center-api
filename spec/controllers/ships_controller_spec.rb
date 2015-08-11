@@ -47,7 +47,21 @@ RSpec.describe "ShipsController", :type => :request do
 
   end
 
-  pending "Update action"
+  describe "Update action" do
+
+    context "with allowed params" do
+      before { patch ship_path(id: @ship.id, ship: { name: "Atlantis" }) }
+      it { expect(response.status).to eq 200 }
+      it { expect(JSON.parse(response.body)["ship"]["name"]).to eq "Atlantis" }
+    end
+
+    context "with unallowed params" do
+      before { patch ship_path(id: @ship.id, ship: { bad_key: "never assigned value" }) }
+      it { expect(response.status).to eq 200 }
+      it { expect(response.body).to include @ship.to_json }
+    end
+
+  end
 
   pending "Destroy action"
 

@@ -19,6 +19,11 @@ class ShipsController < ApplicationController
   end
 
   def update
+    @ship = Ship.find params[:id]
+    @ship.update!(ship_params)
+    render "ships/show", status: :ok
+  rescue ActiveRecord::RecordNotFound => e
+    render json: "Unknown ship with ID #{params[:id].to_s} (not found)", status: :not_found
   end
 
   def destroy
