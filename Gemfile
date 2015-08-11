@@ -22,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'guard-rspec', require: false
+  gem 'shoulda-matchers', require: false
 
   gem 'pry-byebug'
 end
