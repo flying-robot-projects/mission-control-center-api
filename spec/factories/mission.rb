@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :flight do
+  factory :mission do
     ship
     status "pending"
     telemetric_recordings nil

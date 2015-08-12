@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: flights
+# Table name: missions
 #
 #  id                    :integer          not null, primary key
 #  ship_id               :integer
@@ -10,12 +10,9 @@
 #  updated_at            :datetime         not null
 #
 
-require "rails_helper"
+class Mission < ActiveRecord::Base
+  belongs_to :ship
 
-RSpec.describe Flight, :type => :model do
-  subject { build(:flight) }
-
-  it { is_expected.to be_valid }
-  it { is_expected.to validate_presence_of :ship_id }
-  it { is_expected.to validate_presence_of :status }
+  validates :ship_id, :status, presence: true
+  validates :status, inclusion: { in: %w(pending in_progress ended) }
 end

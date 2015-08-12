@@ -1,0 +1,1 @@
+json.array! @missions, partial: 'mission', as: :mission
