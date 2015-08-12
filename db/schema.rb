@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728072429) do
+ActiveRecord::Schema.define(version: 20150812094310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "flights", force: :cascade do |t|
+  create_table "missions", force: :cascade do |t|
     t.integer  "ship_id"
     t.string   "status"
     t.json     "telemetric_recordings"
@@ -24,23 +24,16 @@ ActiveRecord::Schema.define(version: 20150728072429) do
     t.datetime "updated_at",            null: false
   end
 
-  create_table "ship_models", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ships", force: :cascade do |t|
     t.string   "name"
-    t.integer  "ship_model_id"
     t.string   "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "category"
   end
 
   create_table "telemetric_recordings", force: :cascade do |t|
-    t.integer  "flight_id"
+    t.integer  "mission_id"
     t.json     "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
