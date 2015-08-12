@@ -1,1 +1,0 @@
-json.array! @ship_models, partial: 'ship_model', as: :ship_model
