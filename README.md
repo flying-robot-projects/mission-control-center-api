@@ -7,5 +7,5 @@ API for our backend Mission Control Center.
 - Telemetry
 - Remote guidance
 - Energy and propulsion management
-- Flight plan management
+- Mission and flight plan management
 - Position, location, and recorvery
