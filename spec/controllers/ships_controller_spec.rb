@@ -16,18 +16,20 @@ RSpec.describe "ShipsController", :type => :request do
 
   describe "Create action" do
 
-    context "with existing ship_model ID" do
-      before { post ships_path(ship: { ship_model_id: @ship.ship_model.id }) }
+    context "with valid attributes" do
+      let(:valid_params) { attributes_for(:ship) }
+      before { post ships_path(ship: valid_params) }
       it { expect(response.status).to eq 201 }
     end
 
-    context "with unknown ship ID" do
-      before { post ships_path(ship: { ship_model_id: -1 }) }
-      it { expect(response.status).to eq 404 }
+    context "with invalid attributes" do
+      let(:invalid_params) {{ invalid_key: "never assigned value" }}
+      before { post ships_path(ship: invalid_params) }
+      it { expect(response.status).to eq 422 }
     end
   end
 
-  describe "Show action" do
+  pending "Show action" do
 
     context "when ship ID doesn't exist" do
       before { get ship_path(-1) }
@@ -43,7 +45,7 @@ RSpec.describe "ShipsController", :type => :request do
     end
   end
 
-  describe "Update action" do
+  pending "Update action" do
 
     context "with allowed params" do
       before { patch ship_path(id: @ship.id, ship: { name: "Atlantis" }) }
@@ -58,7 +60,7 @@ RSpec.describe "ShipsController", :type => :request do
     end
   end
 
-  describe "Destroy action" do
+  pending "Destroy action" do
     let!(:ship) { create(:ship) }
 
     context "when ship ID doesn't exist" do

@@ -1,1 +1,1 @@
-json.(ship, :id, :name, :status, :created_at, :updated_at)
+json.(ship, :id, :name, :status, :created_at, :updated_at, :category)

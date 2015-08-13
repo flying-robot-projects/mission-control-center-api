@@ -13,7 +13,7 @@ RSpec.describe "MissionsController", :type => :request do
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
   end
 
-  describe "Create action" do
+  pending "Create action" do
 
     context "with valid params" do
       let(:valid_params) { attributes_for(:mission) }
@@ -33,7 +33,7 @@ RSpec.describe "MissionsController", :type => :request do
     end
   end
 
-  describe "Show action" do
+  pending "Show action" do
 
     context "when mission ID doesn't exist" do
       before { get mission_path(-1) }
@@ -48,7 +48,7 @@ RSpec.describe "MissionsController", :type => :request do
     end
   end
 
-  describe "Update action" do
+  pending "Update action" do
 
     context "with allowed params" do
       before { patch mission_path(id: @mission.id, mission: { status: "in mission" }) }
