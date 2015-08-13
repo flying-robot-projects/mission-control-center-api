@@ -29,23 +29,13 @@ RSpec.describe "ShipsController", :type => :request do
     end
   end
 
-  pending "Show action" do
-
-    context "when ship ID doesn't exist" do
-      before { get ship_path(-1) }
-      it { expect(response.status).to eq 404 }
-    end
-
-    context "when ship ID exists" do
-      before { get ship_path(@ship.id) }
-      it { expect(response.status).to eq 200 }
-      it { expect(response.body).to include @ship.to_json }
-      it { expect(response.body).to include @ship.ship_model.to_json }
-      it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
-    end
+  describe "Show action" do
+    before { get ship_path(@ship.id) }
+    it { expect(response.status).to eq 200 }
+    it { expect(response.body).to include @ship.to_json }
   end
 
-  pending "Update action" do
+  describe "Update action" do
 
     context "with allowed params" do
       before { patch ship_path(id: @ship.id, ship: { name: "Atlantis" }) }
@@ -60,7 +50,7 @@ RSpec.describe "ShipsController", :type => :request do
     end
   end
 
-  pending "Destroy action" do
+  describe "Destroy action" do
     let!(:ship) { create(:ship) }
 
     context "when ship ID doesn't exist" do
