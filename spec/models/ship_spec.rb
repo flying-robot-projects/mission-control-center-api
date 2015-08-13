@@ -2,12 +2,12 @@
 #
 # Table name: ships
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  ship_model_id :integer
-#  status        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id         :integer          not null, primary key
+#  name       :string
+#  status     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  category   :string
 #
 
 require "rails_helper"
@@ -17,6 +17,6 @@ RSpec.describe Ship, :type => :model do
 
   it { is_expected.to be_valid }
   it { is_expected.to validate_presence_of :name }
-  it { is_expected.to validate_presence_of :ship_model_id }
   it { is_expected.to validate_presence_of :status }
+  it { is_expected.to validate_presence_of :category }
 end

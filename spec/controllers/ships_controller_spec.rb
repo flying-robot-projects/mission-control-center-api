@@ -72,11 +72,11 @@ RSpec.describe "ShipsController", :type => :request do
       it { expect(response.body).to include ship.to_json }
     end
 
-    context "when ship is associated with a flight" do
-      let!(:flight) { create(:flight, ship: ship) }
+    context "when ship is associated with a mission" do
+      let!(:mission) { create(:mission, ship: ship) }
       before do
         delete ship_path(ship.id)
-        get flight_path(flight.id)
+        get mission_path(mission.id)
       end
       it { expect(response.status).to eq 404 }
     end
