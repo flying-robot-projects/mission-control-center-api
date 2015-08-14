@@ -6,10 +6,11 @@ class MissionsController < ApplicationController
 
   def create
     raise ActiveRecord::RecordNotFound unless Ship.exists? params[:mission][:ship_id]
+    params["mission"]["telemetric_recordings"] = nil unless params["mission"]["telemetric_recordings"].length != 0
     @mission = Mission.create(mission_params)
     render "missions/show", status: :created
   rescue ActiveRecord::RecordNotFound => e
-    render json: "Unknown ship with ID #{params[:mission][:ship_id].to_s} (not found)", status: :not_found
+    render json: "Unknown ship with ID #{params[:mission][:ship_id].to_s} (not found)", status: :unprocessable_entity
   end
 
   def show

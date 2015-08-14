@@ -13,23 +13,27 @@ RSpec.describe "MissionsController", :type => :request do
     it { expect(JSON.parse response.body).to be_an_instance_of Array }
   end
 
-  pending "Create action" do
+  describe "Create action" do
 
     context "with valid params" do
-      let(:valid_params) { attributes_for(:mission) }
-      before { post missions_path(valid_params) }
+      let(:valid_params) { @mission.attributes }
+      before { post missions_path(mission: valid_params) }
       it { expect(response.status).to eq 201 }
     end
 
+    context "with unknown ship ID" do
+      let(:valid_params_with_unknown_ship_id) { @mission.attributes }
+      before do
+        valid_params_with_unknown_ship_id["ship_id"] = -1
+        post missions_path(mission: valid_params_with_unknown_ship_id)
+      end
+      it { expect(response.status).to eq 422 }
+    end
+
     context "with invalid params" do
-
-      context "when missing or unknown params" do
-      end
-
-      context "but unknown ship ID" do
-        before { post missions_path(valid_params, ship_id: -1) }
-        it { expect(response.status).to eq 404 }
-      end
+      let(:invalid_params) {{ invalid_key: "never assigned value" }}
+      before { post missions_path(mission: invalid_params) }
+      it { expect(response.status).to eq 422 }
     end
   end
 
