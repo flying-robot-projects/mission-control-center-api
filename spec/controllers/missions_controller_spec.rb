@@ -37,7 +37,7 @@ RSpec.describe "MissionsController", :type => :request do
     end
   end
 
-  pending "Show action" do
+  describe "Show action" do
 
     context "when mission ID doesn't exist" do
       before { get mission_path(-1) }
@@ -48,16 +48,15 @@ RSpec.describe "MissionsController", :type => :request do
       before { get mission_path(@mission.id) }
       it { expect(response.body).to include @mission.to_json }
       it { expect(response.body).to include @mission.ship.to_json }
-      it { expect(JSON.parse response.body).not_to be_an_instance_of Array }
     end
   end
 
-  pending "Update action" do
+  describe "Update action" do
 
     context "with allowed params" do
-      before { patch mission_path(id: @mission.id, mission: { status: "in mission" }) }
+      before { patch mission_path(id: @mission.id, mission: { status: "in_progress" }) }
       it { expect(response.status).to eq 200 }
-      it { expect(JSON.parse(response.body)["mission"]["status"]).to eq "in mission" }
+      it { expect(JSON.parse(response.body)["mission"]["status"]).to eq "in_progress" }
     end
 
     context "with unallowed params" do
